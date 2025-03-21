@@ -1,0 +1,506 @@
+:root {
+    --dark-bg: #0f172a;
+    --dark-secondary: #1e293b;
+    --cyan-primary: #06b6d4;
+    --cyan-secondary: #0891b2;
+    --cyan-light: #67e8f9;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --danger: #ef4444;
+    --success: #10b981;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--text-primary);
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom right, rgba(6, 182, 212, 0.05), rgba(6, 182, 212, 0));
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 25px 0;
+    border-bottom: 2px solid var(--cyan-primary);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background-color: var(--cyan-primary);
+    border-radius: 2px;
+}
+
+h1 {
+    color: var(--cyan-primary);
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+    letter-spacing: 1px;
+}
+
+h2 {
+    color: var(--cyan-secondary);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    position: relative;
+    display: inline-block;
+}
+
+.form-container {
+    background-color: var(--dark-secondary);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(6, 182, 212, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 1.05rem;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    background-color: #1e293b;
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--cyan-primary);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+    background-color: #263548;
+}
+
+.btn-add {
+    background-color: var(--cyan-primary);
+    color: #0f172a;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s;
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-add:hover {
+    background-color: var(--cyan-secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(6, 182, 212, 0.3);
+}
+
+.btn-add:active {
+    transform: translateY(0);
+}
+
+.alunos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.search-container {
+    display: flex;
+    max-width: 400px;
+    width: 100%;
+}
+
+#pesquisa {
+    border-radius: 8px 0 0 8px;
+    border-right: none;
+    padding-left: 15px;
+}
+
+#btn-pesquisa {
+    background-color: var(--cyan-primary);
+    color: #0f172a;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#btn-pesquisa:hover {
+    background-color: var(--cyan-secondary);
+}
+
+.alunos-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.aluno-card {
+    background-color: var(--dark-secondary);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    position: relative;
+    border-left: 4px solid var(--cyan-primary);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.aluno-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle at top right, rgba(6, 182, 212, 0.1), transparent 70%);
+    border-radius: 0 0 0 100%;
+}
+
+.aluno-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+.aluno-card h3 {
+    color: var(--cyan-light);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    border-bottom: 1px solid rgba(6, 182, 212, 0.2);
+    padding-bottom: 10px;
+}
+
+.aluno-info {
+    margin-bottom: 20px;
+}
+
+.aluno-info p {
+    margin: 10px 0;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+}
+
+.aluno-info span {
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.tempo-restante {
+    background-color: rgba(6, 182, 212, 0.08);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    border: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+.tempo-restante p {
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+}
+
+.tempo-restante p i {
+    margin-right: 10px;
+    color: var(--cyan-primary);
+}
+
+.btn-delete {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: var(--danger);
+    color: white;
+    transform: rotate(90deg);
+}
+
+.sem-alunos {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 30px;
+    background-color: var(--dark-secondary);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .alunos-lista {
+        grid-template-columns: 1fr;
+    }
+    
+    .alunos-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .search-container {
+        max-width: 100%;
+    }
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-action {
+    background-color: var(--dark-secondary);
+    color: var(--cyan-primary);
+    border: 1px solid var(--cyan-primary);
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-action:hover {
+    background-color: var(--cyan-primary);
+    color: var(--dark-bg);
+}
+
+.form-container {
+    background-color: var(--dark-secondary);
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(6, 182, 212, 0.1);
+    transition: all 0.3s;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    padding: 14px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-cancel:hover {
+    background-color: var(--danger);
+    color: white;
+}
+
+/* Adicione ao final do seu arquivo CSS */
+
+.btn-calc-dias {
+    background-color: var(--dark-secondary);
+    color: var(--cyan-primary);
+    border: 1px solid var(--cyan-primary);
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-calc-dias:hover {
+    background-color: var(--cyan-primary);
+    color: var(--dark-bg);
+}
+
+.dias-especificos-resultado {
+    margin-top: 15px;
+}
+
+.dias-especificos-box {
+    background-color: rgba(6, 182, 212, 0.15);
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid var(--cyan-primary);
+    margin-top: 10px;
+}
+
+.dias-selecionados {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: 5px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--dark-secondary);
+    padding: 25px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--cyan-primary);
+    animation: modalFadeIn 0.3s;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--danger);
+}
+
+.modal h3 {
+    color: var(--cyan-primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.dias-semana {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.dias-semana label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.dias-semana label:hover {
+    background-color: rgba(6, 182, 212, 0.1);
+}
+
+.dias-semana input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--cyan-primary);
+}
+
+.icon-i {
+    width: 25px;
+}
