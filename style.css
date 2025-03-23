@@ -308,6 +308,33 @@ input:focus {
     justify-content: center;
 }
 
+.sort-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.sort-buttons .btn-action {
+    background-color: var(--dark-secondary);
+    color: var(--cyan-primary);
+    border: 1px solid var(--cyan-primary);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sort-buttons .btn-action:hover {
+    background-color: var(--cyan-primary);
+    color: var(--dark-bg);
+}
+
 .btn-action {
     background-color: var(--dark-secondary);
     color: var(--cyan-primary);

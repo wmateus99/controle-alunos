@@ -359,3 +359,37 @@ function obterNomesDias(diasSelecionados) {
     
     return diasSelecionados.map(dia => nomesDias[dia]).join(', ');
 }
+
+// Function to sort students by remaining time in months
+function sortAlunos(order) {
+    const alunos = JSON.parse(localStorage.getItem('alunos')) || [];
+    const sortedAlunos = alunos.sort((a, b) => {
+        const timeA = calcularTempoRestante(a.previsao).meses;
+        const timeB = calcularTempoRestante(b.previsao).meses;
+        return order === 'asc' ? timeA - timeB : timeB - timeA;
+    });
+    localStorage.setItem('alunos', JSON.stringify(sortedAlunos));
+    carregarAlunos();
+}
+
+// Event listeners for sorting buttons
+document.getElementById('sort-asc').addEventListener('click', function() {
+    sortAlunos('asc');
+});
+
+document.getElementById('sort-desc').addEventListener('click', function() {
+    sortAlunos('desc');
+});
+
+// Function to sort students alphabetically by name
+function sortAlunosAlphabetically() {
+    const alunos = JSON.parse(localStorage.getItem('alunos')) || [];
+    const sortedAlunos = alunos.sort((a, b) => a.nome.localeCompare(b.nome));
+    localStorage.setItem('alunos', JSON.stringify(sortedAlunos));
+    carregarAlunos();
+}
+
+// Event listener for alphabetical sorting button
+document.getElementById('sort-alpha').addEventListener('click', function() {
+    sortAlunosAlphabetically();
+});
